@@ -5,11 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier . --write"
+    "format": "prettier . --check",
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^19.2.6",
