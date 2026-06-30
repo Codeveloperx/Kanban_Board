@@ -5,5 +5,4 @@ export interface List extends Entity {
   title: string;
   position: number;
   isCollapsed: boolean;
-  isArchived: boolean;
 }

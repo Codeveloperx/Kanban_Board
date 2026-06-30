@@ -9,5 +9,4 @@ export interface Task extends Entity {
   position: number;
   priority: TaskPriority;
   status: TaskStatus;
-  isArchived: boolean;
 }
