@@ -1,6 +1,6 @@
 export interface Storage {
-  load<T>(): T | null;
-  save<T>(data: T): void;
-  remove(): void;
-  clear(): void;
+  load<T>(): Promise<T | null>;
+  save<T>(data: T): Promise<void>;
+  remove(): Promise<void>;
+  clear(): Promise<void>;
 }

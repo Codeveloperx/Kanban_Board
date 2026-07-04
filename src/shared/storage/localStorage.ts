@@ -1,8 +1,9 @@
 import { STORAGE_KEY } from './constants';
+
 import type { Storage } from './storage';
 
 export class LocalStorage implements Storage {
-  load<T>(): T | null {
+  async load<T>(): Promise<T | null> {
     try {
       const values = localStorage.getItem(STORAGE_KEY);
       return values ? (JSON.parse(values) as T) : null;
@@ -12,15 +13,15 @@ export class LocalStorage implements Storage {
     }
   }
 
-  save<T>(data: T): void {
+  async save<T>(data: T): Promise<void> {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }
 
-  remove(): void {
+  async remove(): Promise<void> {
     localStorage.removeItem(STORAGE_KEY);
   }
 
-  clear(): void {
+  async clear(): Promise<void> {
     localStorage.clear();
   }
 }
