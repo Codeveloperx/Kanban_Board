@@ -1,5 +1,5 @@
 import type { Board } from '../model/Board';
-import type { BoardRepository } from '../repository/boardRepository';
+import type { BoardRepository } from '../repository/BoardRepository';
 
 export class BoardService {
   private repository: BoardRepository;
@@ -8,11 +8,15 @@ export class BoardService {
     this.repository = repository;
   }
 
-  async findAll(): Promise<Board[]> {
-    return this.repository.getBoards();
+  async findAll(isActive: boolean): Promise<Board[]> {
+    return this.repository.getBoards(isActive);
   }
 
   async findById(id: string): Promise<Board | null> {
+    if (!id) {
+      throw new Error('Board ID is required');
+    }
+
     return this.repository.getBoardById(id);
   }
 
@@ -56,6 +60,6 @@ export class BoardService {
       return;
     }
 
-    return this.repository.archiveBoard(id);
+    return this.repository.removeBoard(id);
   }
 }

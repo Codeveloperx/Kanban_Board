@@ -1,4 +1,4 @@
-import { BoardRepository } from '../repository/boardRepository';
+import { BoardRepository } from '../repository/BoardRepository';
 import { BoardService } from './BoardServices';
 
 const repository = new BoardRepository();

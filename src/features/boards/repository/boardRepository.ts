@@ -14,9 +14,9 @@ export class BoardRepository implements IBoardRepository {
     return storage.save<KanbanState>(state);
   }
 
-  async getBoards(): Promise<Board[]> {
+  async getBoards(isActive: boolean): Promise<Board[]> {
     const state = await this.load();
-    return state.boards.filter((b) => !b.isArchived);
+    return state.boards.filter((b) => b.isArchived !== isActive);
   }
 
   async getBoardById(id: string): Promise<Board | null> {
@@ -52,7 +52,7 @@ export class BoardRepository implements IBoardRepository {
     return board;
   }
 
-  async archiveBoard(id: string): Promise<void> {
+  async removeBoard(id: string): Promise<void> {
     const state = await this.load();
 
     const updatedBoards = state.boards.map((b) =>
