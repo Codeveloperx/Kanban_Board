@@ -1,5 +1,5 @@
 import type { Board } from '../model/Board';
-import type { BoardRepository } from '../repository/BoardRepository';
+import type { BoardRepository } from '../repository/boardRepository';
 
 export class BoardService {
   private repository: BoardRepository;
