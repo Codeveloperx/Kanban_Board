@@ -2,7 +2,7 @@ import { storage } from '@/shared/storage';
 
 import type { Board } from '../model/Board';
 import type { KanbanState } from '@/shared/domain/state/KanbanState';
-import type { IBoardRepository } from './IBoardRepository';
+import type { IBoardRepository } from './IboardRepository';
 
 export class BoardRepository implements IBoardRepository {
   private async load(): Promise<KanbanState> {

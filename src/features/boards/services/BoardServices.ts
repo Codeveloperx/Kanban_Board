@@ -1,5 +1,5 @@
 import type { Board } from '../model/Board';
-import type { BoardRepository } from '../repository/BoardRepository';
+import type { BoardRepository } from '../repository/boardRepository';
 
 export class BoardService {
   private repository: BoardRepository;
@@ -8,7 +8,7 @@ export class BoardService {
     this.repository = repository;
   }
 
-  async findAll(isActive: boolean): Promise<Board[]> {
+  async findAll(isActive: boolean = false): Promise<Board[]> {
     return this.repository.getBoards(isActive);
   }
 
@@ -37,10 +37,18 @@ export class BoardService {
   }
 
   async update(board: Board): Promise<Board> {
-    const existing = await this.repository.getBoardById(board.id);
+    const existBoard = await this.repository.getBoardById(board.id);
 
-    if (!existing) {
+    if (!existBoard) {
       throw new Error('Board not found');
+    }
+
+    if (existBoard.isArchived) {
+      throw new Error('Cannot update an archived board');
+    }
+
+    if (existBoard.title === board.title) {
+      throw new Error('Board title is the same as the existing one');
     }
 
     return this.repository.updateBoard({
