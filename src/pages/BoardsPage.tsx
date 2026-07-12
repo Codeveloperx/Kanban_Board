@@ -1,3 +1,3 @@
 export const BoardsPage = () => {
-  return <h1>Boards</h1>;
+  return <h1 className="text-xl flex justify-center mt-10">Boards</h1>;
 };
