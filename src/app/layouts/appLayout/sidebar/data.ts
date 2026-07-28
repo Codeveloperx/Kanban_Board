@@ -1,5 +1,4 @@
 import { FolderKanban, Star, SquarePen, type LucideIcon } from 'lucide-react';
-
 import { KEY_ADD_BOARD, KEY_BOARDS, KEY_FAVORITES } from './constants';
 
 interface NavigationItem {

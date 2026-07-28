@@ -1,22 +1,31 @@
 import { SidebarFooter } from './SidebarFooter';
 import { SidebarHeader } from './SidebarHeader';
-import { navItems } from './data';
+import { useState } from 'react';
 import { SidebarItem } from './SidebarItem';
+import { navItems } from './data';
 
 export const Sidebar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
-    <aside className="flex h-screen w-16 flex-col justify-center items-center bg-gray-800 text-white">
-      <SidebarHeader />
+    <aside
+      className={`flex flex-col items-stretch justify-between bg-gray-800 text-white transition-all duration-300 ${isOpen ? 'w-64' : 'w-14'}`}
+    >
+      <SidebarHeader isOpen={isOpen} onToggle={toggleSidebar} />
 
       <nav className="flex-1">
-        <div className="flex flex-col justify-center items-center gap-2">
+        <div className={`mt-2 flex flex-col ${!isOpen && 'items-center justify-center'}`}>
           {navItems.map((item) => (
-            <SidebarItem key={item.label} icon={item.icon} label={item.label} />
+            <SidebarItem key={item.label} icon={item.icon} label={item.label} isOpen={isOpen} />
           ))}
         </div>
       </nav>
 
-      <SidebarFooter />
+      <SidebarFooter isOpen={isOpen} />
     </aside>
   );
 };
